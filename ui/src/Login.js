@@ -1,25 +1,27 @@
-// import bcrypt from 'bcryptjs';
-// const saltRounds = 10;
-// const myPlaintextPassword = 'helloThere';
-// // const someOtherPlaintextPassword = 'not_bacon';
-// const myOtherPlainTextPassword = 'helloThere'
+import bcrypt from 'bcryptjs';
 import React from 'react'
 
 const Login = () => {
-  // let storedPWHash;
 
-  const isLoggedIn = false;
-  // bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
-  //   storedPWHash = hash;
-  // })
+  const password = "password"
 
-  // bcrypt.compare(myOtherPlainTextPassword, storedPWHash, (err, result) => {
-  //   console.log(`result: `, result);
-  // })
+  const hashedPassword = bcrypt.hash(password, 10)
+  // console.log(`salt: `, salt)
+  // console.log(`hashedPW: `, hashedPassword)
 
-  return (
-    isLoggedIn === true ? <p>You are logged in!</p> : <p>Sorry, please register</p>
-  )
+  if(bcrypt.compare(password, hashedPassword)) {
+    return (
+      <>
+       <p>You are logged in!</p>
+      </>
+    )
+
+  } else {
+    return (
+    <p>Sorry, please register</p>
+    )
+  }
+
 
 }
 
